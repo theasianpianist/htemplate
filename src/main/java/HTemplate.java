@@ -13,14 +13,15 @@ public class HTemplate {
         System.out.print("Please enter the template file path: ");
         Scanner input = new Scanner(System.in);
         String templatePath = input.nextLine(); //Location of the template file
-        String template = getTemplate(templatePath); //String containing text of the template file
+        String template = getFileContents(templatePath); //String containing text of the template file
         if (template.equals("")) {
             System.out.println("Empty template file");
+            System.exit(0);
         }
         System.out.println(template);
     }
 
-    private static String getTemplate(String filePath){
+    private static String getFileContents(String filePath){
         String str = "";
         try {
             File file = new File(filePath);
