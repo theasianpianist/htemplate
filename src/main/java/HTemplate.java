@@ -19,6 +19,10 @@ public class HTemplate {
             System.exit(0);
         }
         System.out.println(template);
+        System.out.print("Please enter the directory for your content files: ");
+        input = new Scanner(System.in);
+        String contentPath = input.nextLine();
+        File[] contentFiles = getDirectoryFiles(contentPath);
     }
 
     private static String getFileContents(String filePath){
@@ -39,5 +43,10 @@ public class HTemplate {
             e.printStackTrace();
         }
         return str;
+    }
+
+    private static File[] getDirectoryFiles(String path){
+        File folder = new File(path);
+        return folder.listFiles();
     }
 }
