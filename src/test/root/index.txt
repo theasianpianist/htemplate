@@ -1,2 +1,2 @@
-***HTEMPLATE1***
+***HTEMPLATE***
 TEST TEXT
