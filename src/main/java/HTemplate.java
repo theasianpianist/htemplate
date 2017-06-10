@@ -3,11 +3,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * Created by theasianpianist on 6/10/17.
  */
 public class HTemplate {
+
+    private static final String marker = "***HTEMPLATE***"; //Start of the content markers that should be contained in content files
 
     public static void main(String[] args){
         System.out.print("Please enter the template file path: ");
@@ -18,11 +21,14 @@ public class HTemplate {
             System.out.println("Empty template file");
             System.exit(0);
         }
-        System.out.println(template);
+        ArrayList<Integer> markerLocations = getMarkerLocations(template);
         System.out.print("Please enter the directory for your content files: ");
         input = new Scanner(System.in);
         String contentPath = input.nextLine();
         File[] contentFiles = getDirectoryFiles(contentPath);
+        for (File content : contentFiles) {
+
+        }
     }
 
     private static String getFileContents(String filePath){
@@ -48,5 +54,19 @@ public class HTemplate {
     private static File[] getDirectoryFiles(String path){
         File folder = new File(path);
         return folder.listFiles();
+    }
+
+    private static ArrayList<Integer> getMarkerLocations(String fileText) {
+        ArrayList<Integer> markerLocations = new ArrayList<Integer>();
+        int location = fileText.indexOf(marker);
+        if (location == -1){
+            System.out.println("Your template file has no content markers");
+            System.exit(1);
+        }
+        while (location != -1){
+            markerLocations.add(location);
+            location = fileText.indexOf(marker, location + 1);
+        }
+        return markerLocations;
     }
 }
