@@ -14,3 +14,5 @@ NOTE: File paths must be absolute.
 
 A prebuilt jar is provided for your convenience if you don't want to build your own
 
+A test directory is provided in ```src/test/java/root``` with a properly formatted template and content file.
+
