@@ -12,3 +12,5 @@ Finally, simply run the JAR and follow the prompts to build your HTML pages.
 
 NOTE: File paths must be absolute.
 
+A prebuilt jar is provided for your convenience if you don't want to build your own
+
