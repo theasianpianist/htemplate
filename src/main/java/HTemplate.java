@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -25,14 +27,14 @@ public class HTemplate {
 
     }
 
-    private static void processFiles(String templatePath, String contentPath) {
+    public static void processFiles(String templatePath, String contentPath) {
         String template = getFileContents(templatePath); //String containing text of the template file
         if (template.equals("")) {
             System.out.println("Empty template file");
             System.exit(0);
         }
         ArrayList<Integer> templateMarkerLocations = getMarkerLocations(template);
-        File[] contentFiles = getDirectoryFiles(contentPath);
+        ArrayList<File> contentFiles = getDirectoryFiles(contentPath);
         for (File content : contentFiles) {
 
         }
@@ -59,9 +61,19 @@ public class HTemplate {
         return str;
     }
 
-    private static File[] getDirectoryFiles(String path){
+    private static ArrayList<File> getDirectoryFiles(String path){
         File folder = new File(path);
-        return folder.listFiles();
+        ArrayList<File> files = new ArrayList<File>(Arrays.asList(folder.listFiles()));
+        HashSet nonHtpFiles = new HashSet();
+        for (File file : files){
+            String filePath = file.getPath();
+            String extension = filePath.substring(filePath.length() - 4, filePath.length());
+            if (!extension.equals(".htp")){ //If the file doesn't end in .htp add it to a hashset to be removed
+                nonHtpFiles.add(file);
+            }
+        }
+        files.removeAll(nonHtpFiles);
+        return files;
     }
 
     private static ArrayList<Integer> getMarkerLocations(String fileText) {
