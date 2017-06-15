@@ -10,25 +10,33 @@ import java.util.ArrayList;
  */
 public class HTemplate {
 
-    private static final String marker = "***HTEMPLATE***"; //Start of the content markers that should be contained in content files
+    private static final String marker = "***HTEMPLATE***"; //Start of the content markers that should be contained in template and content files
+                                                            //e.g. Template file: <html><head></head><body>***HTEMPLATE***</body></html>
+                                                            //e.g. Content file: ***HTEMPLATE***<h1>TEXT</h1><p>text</p>
 
     public static void main(String[] args){
         System.out.print("Please enter the template file path: ");
         Scanner input = new Scanner(System.in);
         String templatePath = input.nextLine(); //Location of the template file
+        System.out.print("Please enter the directory for your content files: ");
+        input = new Scanner(System.in);
+        String contentPath = input.nextLine();
+        processFiles(templatePath, contentPath);
+
+    }
+
+    private static void processFiles(String templatePath, String contentPath) {
         String template = getFileContents(templatePath); //String containing text of the template file
         if (template.equals("")) {
             System.out.println("Empty template file");
             System.exit(0);
         }
-        ArrayList<Integer> markerLocations = getMarkerLocations(template);
-        System.out.print("Please enter the directory for your content files: ");
-        input = new Scanner(System.in);
-        String contentPath = input.nextLine();
+        ArrayList<Integer> templateMarkerLocations = getMarkerLocations(template);
         File[] contentFiles = getDirectoryFiles(contentPath);
         for (File content : contentFiles) {
 
         }
+
     }
 
     private static String getFileContents(String filePath){
