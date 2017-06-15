@@ -9,7 +9,7 @@ Create a template file ```template.html``` containing the html that you want to 
 
 In each ```.htp``` file, insert ```***HTEMPLATE***``` for each occurrance in the template file. Then in the below each occurance in theh ```.htp``` file, write the HTML that you want to insert into the corresponding occurrance in the template file.
 
-Finally, simply run the JAR and follow the prompts to build your HTML pages.
+Finally, simply run the JAR from the terminal with ```java -jar -htemplate-1.0.jar``` (you can also try double clicking on the file but results may vary) and follow the prompts to build your HTML pages.
 
 NOTE: File paths must be absolute.
 
