@@ -30,7 +30,7 @@ public class HTemplate {
             System.out.println("Empty template file");
             System.exit(0);
         }
-        ArrayList<File> contentFiles = getDirectoryFiles(contentPath);
+        ArrayList<File> contentFiles = getDirectoryFiles(contentPath, templatePath);
         ArrayList<Integer> templateMarkerLocations = getMarkerLocations(template);
         for (File file : contentFiles) {
             ArrayList<Integer> contentMarkerLocations = getMarkerLocations(getFileContents(file.getPath()));
@@ -84,13 +84,16 @@ public class HTemplate {
         return str;
     }
 
-    private static ArrayList<File> getDirectoryFiles(String path){
+    private static ArrayList<File> getDirectoryFiles(String path, String templatePath){
         File folder = new File(path);
         ArrayList<File> files = new ArrayList<File>(Arrays.asList(folder.listFiles()));
         HashSet nonHtpFiles = new HashSet();
         for (File file : files){
             String filePath = file.getPath();
             String extension = filePath.substring(filePath.length() - 4, filePath.length());
+            if (file.isDirectory()){
+                processFiles(templatePath, file.getPath());
+            }
             if (!extension.equals(".htp")){ //If the file doesn't end in .htp add it to a hashset to be removed
                 nonHtpFiles.add(file);
             }
