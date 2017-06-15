@@ -25,9 +25,13 @@ public class HTemplateTest {
         String path = "/home/theasianpianist/Data/Documents/Code/htemplate/src/test/java/root/";
         HTemplate.processFiles(path + "template.html", path + "content");
         String outputHTML = getFileContents(path + "content/" + "index.html");
+        String outputHTML2 = getFileContents(path + "content/subfolder/" + "index.html");
         File resultFile = new File(path + "content/" + "index.html");
         resultFile.delete();
+        File resultFile2 = new File(path + "content/subfolder/" + "index.html");
+        resultFile2.delete();
         Assertions.assertEquals(expectedHTML, outputHTML);
+        Assertions.assertEquals(expectedHTML, outputHTML2);
 
     }
     private static String getFileContents(String filePath){
