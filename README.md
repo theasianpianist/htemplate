@@ -1,7 +1,7 @@
 HTemplate: An HTML Templating Tool
 ==================================
 
-HTemplate provides a fast and easy way to manage your HTML pages and make broad changes across your entire site. It allows you to have one central template from which you build all pages on your website (or some, if you want to have more than one template).
+HTemplate provides a fast and easy way to manage your HTML pages and make broad changes across your entire site. It allows you to have one central template from which you build all pages on your website (or multiple templates, if you want to have more than one standard design).
 
 USAGE
 -----
